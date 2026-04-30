@@ -6,19 +6,23 @@ export default function App() {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [summary, setSummary] = useState("");
-
   const [books, setBooks] = useState([]);
+  const [message, setMessage] = useState(""); // <-- new state
 
   const handleAddBook = () => {
-    if (!title || !author || !summary) return;
+    if (!title || !author || !summary) {
+      setMessage("⚠️ Please fill in all fields");
+      return;
+    }
 
     const newBook = { title, author, summary };
     setBooks([...books, newBook]);
 
-    // Clear inputs
+    // clear inputs and message
     setTitle("");
     setAuthor("");
     setSummary("");
+    setMessage("✅ Book added successfully!");
   };
 
   return (
@@ -46,6 +50,9 @@ export default function App() {
       />
 
       <button onClick={handleAddBook}>Add Book</button>
+
+      {/* Feedback message */}
+      {message && <p className="feedback">{message}</p>}
 
       <hr />
 
