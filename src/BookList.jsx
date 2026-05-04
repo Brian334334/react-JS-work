@@ -1,4 +1,4 @@
-export default function BookList({ books }) {
+export default function BookList({ books, onDelete, onEdit }) {
   return (
     <div>
       <h2>Library Books</h2>
@@ -11,6 +11,10 @@ export default function BookList({ books }) {
             <strong>Title:</strong> {book.title} <br />
             <strong>Author:</strong> {book.author} <br />
             <strong>Summary:</strong> {book.summary}
+            <br />
+
+            <button onClick={() => onEdit(index)}>Edit</button>
+            <button onClick={() => onDelete(index)}>Delete</button>
           </li>
         ))}
       </ul>
